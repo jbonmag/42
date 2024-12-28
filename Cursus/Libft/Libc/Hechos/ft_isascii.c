@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 17:07:37 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/27 17:07:39 by jubonet-         ###   ########.fr       */
+/*   Created: 2024/12/27 17:06:39 by jubonet-          #+#    #+#             */
+/*   Updated: 2024/12/27 17:06:40 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 DESCRIPTION
-The  memset() function  fills the first n bytes of the memory area 
-pointed to by s with the constant byte c.
-
+checks whether c is a 7-bit unsigned char value 
+that fits into the ASCII character set.
 RETURN VALUE
-The memset() function returns a pointer to the memory area s.
+The values returned are nonzero if the character c 
+falls into the tested class, and zero if not.
 */
 
-#include <string.h>
-
-void *memset(void *s, int c, size_t n);
+int		ft_isascii(int c)
+{
+    return (c >= 0 && c <= 127);
+}

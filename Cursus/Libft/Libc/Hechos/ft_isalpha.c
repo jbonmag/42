@@ -31,7 +31,7 @@ int ft_isalpha(int c)
         return (0);
 }
 
-int main(void)
+/*int main(void)
 {
 	char c, result;
 
@@ -48,4 +48,4 @@ int main(void)
     printf("The result is %d\n", result);
 
   	return 0;
- }
+ }*/
