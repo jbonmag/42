@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_print_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 08:46:42 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/23 10:59:33 by jubonet-         ###   ########.fr       */
+/*   Created: 2024/12/20 09:19:19 by jubonet-          #+#    #+#             */
+/*   Updated: 2024/12/20 11:17:38 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*#include <unistd.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}*/
 void	ft_putchar(char c);
 
-int	main(int argc, char **argv)
+void	ft_print_numbers(void)
 {
-	int		i;
-	int		j;
-	char	*str;
+	char	i;
 
-	i = 1;
-	while (i < argc)
+	i = '0';
+	while (i <= '9')
 	{
-		j = 0;
-		str = argv[i];
-		while (str[j] != '\0')
-		{
-			ft_putchar(str[j]);
-			j++;
-		}
-		ft_putchar('\n');
+		ft_putchar(i);
 		i++;
 	}
-	return (0);
 }
+
+/*int	main(void)
+{
+	ft_print_numbers();
+	return (0);
+}*/

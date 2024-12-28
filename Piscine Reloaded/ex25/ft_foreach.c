@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_foreach.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 08:46:42 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/23 10:59:33 by jubonet-         ###   ########.fr       */
+/*   Created: 2024/12/23 12:33:48 by jubonet-          #+#    #+#             */
+/*   Updated: 2024/12/23 12:36:53 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char c);
-
-int	main(int argc, char **argv)
+void	ft_foreach(int *tab, int length, void (*f)(int))
 {
-	int		i;
-	int		j;
-	char	*str;
+	int	i;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (i < length)
 	{
-		j = 0;
-		str = argv[i];
-		while (str[j] != '\0')
-		{
-			ft_putchar(str[j]);
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
+		(*f)(tab[i]);
+		++i;
 	}
-	return (0);
 }

@@ -1,35 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 08:46:42 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/23 10:59:33 by jubonet-         ###   ########.fr       */
+/*   Created: 2024/12/21 09:58:15 by jubonet-          #+#    #+#             */
+/*   Updated: 2024/12/21 10:46:04 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char c);
+/*#include <stdio.h>*/
 
-int	main(int argc, char **argv)
+int	ft_iterative_factorial(int nb)
 {
-	int		i;
-	int		j;
-	char	*str;
+	int	i;
+	int	morenauer;
 
 	i = 1;
-	while (i < argc)
+	morenauer = 1;
+	if (nb < 0 || nb > 12)
 	{
-		j = 0;
-		str = argv[i];
-		while (str[j] != '\0')
-		{
-			ft_putchar(str[j]);
-			j++;
-		}
-		ft_putchar('\n');
+		return (0);
+	}
+	else if (nb == 0)
+	{
+		return (1);
+	}
+	while (i <= nb)
+	{
+		morenauer *= i;
 		i++;
 	}
-	return (0);
+	return (morenauer);
 }
+
+/*int	main(void)
+{
+	printf("%d\n", ft_iterative_factorial(6));
+	printf("%d\n", ft_iterative_factorial(-4));
+	return (0);
+}*/

@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 08:46:42 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/23 10:59:33 by jubonet-         ###   ########.fr       */
+/*   Created: 2024/12/21 11:21:43 by jubonet-          #+#    #+#             */
+/*   Updated: 2024/12/21 12:55:50 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char c);
+/*#include <stdio.h>*/
 
-int	main(int argc, char **argv)
+int	ft_sqrt(int nb)
 {
-	int		i;
-	int		j;
-	char	*str;
+	int	a;
 
-	i = 1;
-	while (i < argc)
+	if (nb < 0)
 	{
-		j = 0;
-		str = argv[i];
-		while (str[j] != '\0')
-		{
-			ft_putchar(str[j]);
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
+		return (0);
+	}
+	a = 1;
+	while (a * a < nb)
+	{
+		++a;
+	}
+	if (nb == (a * a))
+	{
+		return (a);
 	}
 	return (0);
 }
+
+/*int	main(void)
+{
+	printf("%d\n", ft_sqrt(-1));
+	printf("%d\n", ft_sqrt(625));
+	printf("%d\n", ft_sqrt(1000000));
+	return (0);
+}*/

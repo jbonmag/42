@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_recursive_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 08:46:42 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/23 10:59:33 by jubonet-         ###   ########.fr       */
+/*   Created: 2024/12/21 10:48:02 by jubonet-          #+#    #+#             */
+/*   Updated: 2024/12/23 12:59:15 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char c);
+/*#include <stdio.h>*/
 
-int	main(int argc, char **argv)
+int	ft_recursive_factorial(int nb)
 {
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 1;
-	while (i < argc)
+	if (nb < 0 || nb > 12)
 	{
-		j = 0;
-		str = argv[i];
-		while (str[j] != '\0')
-		{
-			ft_putchar(str[j]);
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
+		return (0);
 	}
-	return (0);
+	else if (nb == 0)
+	{
+		return (1);
+	}
+	return (nb * ft_recursive_factorial(nb - 1));
 }
+
+/*int	main(void)
+{
+	printf("%d\n", ft_recursive_factorial(5));
+	printf("%d\n", ft_recursive_factorial(-2));
+}*/

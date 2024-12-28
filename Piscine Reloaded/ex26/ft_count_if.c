@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_count_if.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 08:46:42 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/23 10:59:33 by jubonet-         ###   ########.fr       */
+/*   Created: 2024/12/23 12:37:22 by jubonet-          #+#    #+#             */
+/*   Updated: 2024/12/23 12:37:53 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char c);
-
-int	main(int argc, char **argv)
+int	ft_count_if(char **tab, int (*f)(char*))
 {
-	int		i;
-	int		j;
-	char	*str;
+	int	i;
+	int	count;
 
-	i = 1;
-	while (i < argc)
+	count = 0;
+	i = 0;
+	while (tab[i])
 	{
-		j = 0;
-		str = argv[i];
-		while (str[j] != '\0')
-		{
-			ft_putchar(str[j]);
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
+		if ((*f)(tab[i]) == 1)
+			++count;
+		++i;
 	}
-	return (0);
+	return (count);
 }

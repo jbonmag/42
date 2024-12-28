@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_is_negative.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 08:46:42 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/23 10:59:33 by jubonet-         ###   ########.fr       */
+/*   Created: 2024/12/20 09:27:50 by jubonet-          #+#    #+#             */
+/*   Updated: 2024/12/20 09:38:23 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*#include <unistd.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}*/
+
 void	ft_putchar(char c);
 
-int	main(int argc, char **argv)
+void	ft_is_negative(int n)
 {
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 1;
-	while (i < argc)
+	if (n < 0)
 	{
-		j = 0;
-		str = argv[i];
-		while (str[j] != '\0')
-		{
-			ft_putchar(str[j]);
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
+		ft_putchar('N');
 	}
-	return (0);
+	else
+	{
+		ft_putchar('P');
+	}
 }
+
+/*int	main(void)
+{
+	ft_is_negative(0);
+	ft_is_negative(-1);
+	ft_is_negative(1);
+	return (0);
+}*/

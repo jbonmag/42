@@ -1,56 +1,36 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/23 12:17:02 by jubonet-          #+#    #+#             */
+/*   Updated: 2024/12/23 13:45:43 by jubonet-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	nbr_range(int min, int max)
-{
-	return (max - min);
-}
+#include <stdlib.h>
 
 int	*ft_range(int min, int max)
 {
-	int	*arrays;
-	int	nbr;
+	int	*tab;
 	int	i;
 
 	if (min >= max)
 	{
-		arrays = NULL;
-		return (arrays);
+		tab = NULL;
+		return (tab);
 	}
-	nbr = nbr_range(min, max);
-	arrays = (int *)malloc(sizeof(int) * nbr);
-	if (!arrays)
+	tab = malloc(sizeof(int) * (max - min));
+	if (!tab)
 		return (NULL);
 	i = 0;
-	while (i < nbr)
+	while (min < max)
 	{
-		arrays[i] = min;
+		tab[i] = min;
 		min++;
 		i++;
 	}
-	return (arrays);
+	return (tab);
 }
-/*
-#include <stdio.h>
-
-int	main(int ac, char **av)
-{
-	int	*arrays;
-	int	min;
-	int	max;
-	int	i;
-
-	if(ac != 3)
-		return (0);
-	min = atoi(av[1]);
-	max = atoi(av[2]);
-	arrays = ft_range(min, max);
-	i = 0;
-	while(arrays[i])
-	{
-		printf("%d ", arrays[i]);
-		i++;
-	}
-	printf("\n");
-	return (0);
-}
-*/
