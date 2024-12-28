@@ -24,7 +24,7 @@ int	ft_strlen(char *str)
 
 /*int	main(void)
 {
-	char	*str = "Agamenon";
+	char	*str = "Lentoviolento";
 
 	printf("%d\n", ft_strlen(str));
 }*/
