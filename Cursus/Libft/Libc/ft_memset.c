@@ -19,6 +19,20 @@ RETURN VALUE
 The memset() function returns a pointer to the memory area s.
 */
 
-#include <string.h>
+#include "libft.h"
 
-void *memset(void *s, int c, size_t n);
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t	i;
+	char	*ptr;
+
+	ptr = (char *)s;
+	i = 0;
+	while (i < n)
+	{
+		*ptr = (unsigned char)c;
+		ptr++;
+		i++;
+	}
+	return (s);
+}
