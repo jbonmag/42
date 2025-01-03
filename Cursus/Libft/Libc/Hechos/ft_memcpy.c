@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 17:07:37 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/27 17:07:39 by jubonet-         ###   ########.fr       */
+/*   Created: 2024/12/27 17:08:10 by jubonet-          #+#    #+#             */
+/*   Updated: 2024/12/27 17:08:11 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 DESCRIPTION
-The  memset() function  fills the first n bytes of the memory area 
-pointed to by s with the constant byte c.
-
+The memcpy() function copies n bytes from memory area src to memory area dest.
+The memory areas must not overlap.
 RETURN VALUE
-The memset() function returns a pointer to the memory area s.
+The memcpy() function returns a pointer to dest.
 */
-
-#include <string.h>
-
-void *memset(void *s, int c, size_t n)
+void *ft_memcpy(void *dest, const void *src, size_t n)
 {
     size_t i;
-    char *ptr;
 
-    ptr = (char *)s;
     i = 0;
+    if (dest == '\0' && src == '\0')
+        return ('\0');
     while (i < n)
     {
-        *ptr = (unsigned char)c;
-        ptr++;
+        ((unsigned char *)dest) [i] = ((unsigned char *)src) [i];
         i++;
     }
-    return (s);
+    return (dst);
 }

@@ -10,4 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+isprint()
+checks for any printable character including space.
+*/
 
+int ft_isprint(int c)
+{
+    return (c >= 33 && c <= 126);
+}
