@@ -6,7 +6,7 @@
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 17:04:07 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/27 17:04:26 by jubonet-         ###   ########.fr       */
+/*   Updated: 2025/01/06 13:59:27 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ the tested class, and zero if not.
 */
 //#include    "libft.h"
 
-int ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
-    if ((c >= 65 && c <= 90) || (c > 97 && c <= 122))
-        return (c); //comprobar que aqui puede ir c y no 1
-    else
-        return (0);
+	if ((c >= 65 && c <= 90) || (c > 97 && c <= 122))
+		return (c);
+	else
+		return (0);
 }
 
 /*int main(void)

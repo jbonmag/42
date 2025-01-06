@@ -6,7 +6,7 @@
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 17:06:19 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/27 17:06:20 by jubonet-         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:29:41 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ falls into the tested class, and zero if not.
 */
 //#include <libft.h>
 
-int ft_isalnum(int c)
+int	ft_isalnum(int c)
 {
-    return (ft_isalpha(c) || ft_isdigit(c));
+	return (ft_isalpha(c) || ft_isdigit(c));
 }
 //las condiciones en un return hacen que se evaluan 
 //directamente si una de las condiciones es verdadera o falsa

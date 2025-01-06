@@ -6,7 +6,7 @@
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 17:07:02 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/27 17:07:04 by jubonet-         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:02:14 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ isprint()
 checks for any printable character including space.
 */
 
-int ft_isprint(int c)
+int	ft_isprint(int c)
 {
-    return (c >= 33 && c <= 126);
+	return (c >= 33 && c <= 126);
 }

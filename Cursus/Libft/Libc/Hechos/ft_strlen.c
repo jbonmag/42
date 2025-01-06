@@ -6,7 +6,7 @@
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 17:07:15 by jubonet-          #+#    #+#             */
-/*   Updated: 2024/12/27 17:07:17 by jubonet-         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:12:03 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ RETURN VALUE
        The strlen() function returns the number of bytes in the string pointed
        to by s.
 */
-#include    <stdlib.h>
+#include <stdlib.h>
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-    size_t i;
+	size_t	i;
 
-    i = 0;
-    while (s[i] != '\0')
-        i++;
-    return (i);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 /*int main(void)
 {
