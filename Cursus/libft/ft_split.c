@@ -6,7 +6,7 @@
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 17:20:40 by jubonet-          #+#    #+#             */
-/*   Updated: 2025/01/10 23:26:02 by jubonet-         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:44:05 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,80 +14,88 @@
 
 static int	count_words(const char *str, char c)
 {
-	int	i;
-	int	trigger;
+	int	count;
+	int	in_word;
 
-	i = 0;
-	trigger = 0;
-	if (!str)
-		return (0);
+	count = 0;
+	in_word = 0;
 	while (*str)
 	{
-		if (*str != c && trigger == 0)
+		if (*str != c && !in_word)
 		{
-			trigger = 1;
-			i++;
+			in_word = 1;
+			count++;
 		}
 		else if (*str == c)
-			trigger = 0;
+			in_word = 0;
 		str++;
 	}
-	return (i);
+	return (count);
 }
 
-static char	*word_dup(const char *str, int start, int finish)
+static char	*word_dup(const char *str, int start, int end)
 {
 	char	*word;
 	int		i;
 
-	i = 0;
-	word = malloc((finish - start + 1) * sizeof(char));
+	word = malloc((end - start + 1) * sizeof(char));
 	if (!word)
 		return (NULL);
-	while (start < finish)
+	i = 0;
+	while (start < end)
 		word[i++] = str[start++];
 	word[i] = '\0';
 	return (word);
 }
 
-static char	**do_split(char const *s, char c, char **split)
+static char	**free_split(char **split, int j)
 {
-	size_t	i;
-	size_t	j;
-	int		index;
+	while (j > 0)
+		free(split[--j]);
+	free(split);
+	return (NULL);
+}
 
-	i = 0;
-	j = 0;
-	index = -1;
-	while (i <= ft_strlen(s))
+static char	**process_split(const char *s, char c, char **split, int *params)
+{
+	if (s[params[0]] != c && params[2] == -1)
+		params[2] = params[0];
+	if ((s[params[0]] == c || s[params[0] + 1] == '\0') && params[2] != -1)
 	{
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
+		if (s[params[0]] == c || s[params[0] + 1] == '\0')
 		{
-			split[j] = word_dup(s, index, i);
-			if (!split[j])
-				return (NULL);
-			j++;
-			index = -1;
+			if (s[params[0] + 1] == '\0' && s[params[0]] != c)
+				split[params[1]] = word_dup(s, params[2], params[0] + 1);
+			else
+				split[params[1]] = word_dup(s, params[2], params[0]);
+			if (!split[params[1]++])
+				return (free_split(split, params[1] - 1));
 		}
-		i++;
+		params[2] = -1;
 	}
-	split[j] = NULL;
 	return (split);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(const char *s, char c)
 {
 	char	**split;
+	int		params[3];
 
 	if (!s)
 		return (NULL);
 	split = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
-	split = do_split(s, c, split);
-	if (!split)
-		free(split);
+	params[0] = 0;
+	params[1] = 0;
+	params[2] = -1;
+	while (s[params[0]])
+	{
+		split = process_split(s, c, split, params);
+		if (!split)
+			return (NULL);
+		params[0]++;
+	}
+	split[params[1]] = NULL;
 	return (split);
 }

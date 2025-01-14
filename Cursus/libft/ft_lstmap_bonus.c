@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 17:09:34 by jubonet-          #+#    #+#             */
-/*   Updated: 2025/01/11 17:06:27 by jubonet-         ###   ########.fr       */
+/*   Created: 2024/12/27 17:26:17 by jubonet-          #+#    #+#             */
+/*   Updated: 2025/01/10 14:27:58 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	while (*s)
+	t_list	*head;
+	t_list	*tmp;
+
+	head = NULL;
+	while (lst)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		tmp = ft_lstnew((*f)(lst -> content));
+		if (!tmp)
+		{
+			ft_lstclear(&head, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&head, tmp);
+		lst = lst -> next;
 	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
+	return (head);
 }
