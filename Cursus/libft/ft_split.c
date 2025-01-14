@@ -12,90 +12,91 @@
 
 #include "libft.h"
 
-static int	count_words(const char *str, char c)
+static void	ft_initiate_vars(size_t *i, int *j, int *s_word)
+{
+	*i = 0;
+	*j = 0;
+	*s_word = -1;
+}
+
+static void	*ft_free(char **str_array, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		free(str_array[i]);
+		i++;
+	}
+	free(str_array);
+	return (NULL);
+}
+
+static char	*fill_word(const char *str, int start, int end)
+{
+	char	*word;
+	int		i;
+
+	i = 0;
+	word = malloc((end - start + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
+	while (start < end)
+	{
+		word[i] = str[start];
+		i++;
+		start++;
+	}
+	word[i] = 0;
+	return (word);
+}
+
+static int	ft_word_count(const char *str, char splitter)
 {
 	int	count;
-	int	in_word;
+	int	word_start;
 
 	count = 0;
-	in_word = 0;
+	word_start = 0;
 	while (*str)
 	{
-		if (*str != c && !in_word)
+		if (*str != splitter && word_start == 0)
 		{
-			in_word = 1;
+			word_start = 1;
 			count++;
 		}
-		else if (*str == c)
-			in_word = 0;
+		else if (*str == splitter)
+			word_start = 0;
 		str++;
 	}
 	return (count);
 }
 
-static char	*word_dup(const char *str, int start, int end)
+char	**ft_split(const char *str, char splitter)
 {
-	char	*word;
-	int		i;
+	char	**str_array;
+	size_t	i;
+	int		j;
+	int		word_start;
 
-	word = malloc((end - start + 1) * sizeof(char));
-	if (!word)
+	ft_initiate_vars(&i, &j, &word_start);
+	str_array = ft_calloc((ft_word_count(str, splitter) + 1), sizeof(char *));
+	if (!str_array)
 		return (NULL);
-	i = 0;
-	while (start < end)
-		word[i++] = str[start++];
-	word[i] = '\0';
-	return (word);
-}
-
-static char	**free_split(char **split, int j)
-{
-	while (j > 0)
-		free(split[--j]);
-	free(split);
-	return (NULL);
-}
-
-static char	**process_split(const char *s, char c, char **split, int *params)
-{
-	if (s[params[0]] != c && params[2] == -1)
-		params[2] = params[0];
-	if ((s[params[0]] == c || s[params[0] + 1] == '\0') && params[2] != -1)
+	while (i <= ft_strlen(str))
 	{
-		if (s[params[0]] == c || s[params[0] + 1] == '\0')
+		if (str[i] != splitter && word_start < 0)
+			word_start = i;
+		else if ((str[i] == splitter || i == ft_strlen(str)) && word_start >= 0)
 		{
-			if (s[params[0] + 1] == '\0' && s[params[0]] != c)
-				split[params[1]] = word_dup(s, params[2], params[0] + 1);
-			else
-				split[params[1]] = word_dup(s, params[2], params[0]);
-			if (!split[params[1]++])
-				return (free_split(split, params[1] - 1));
+			str_array[j] = fill_word(str, word_start, i);
+			if (!(str_array[j]))
+				return (ft_free(str_array, j));
+			word_start = -1;
+			j++;
 		}
-		params[2] = -1;
+		i++;
 	}
-	return (split);
-}
-
-char	**ft_split(const char *s, char c)
-{
-	char	**split;
-	int		params[3];
-
-	if (!s)
-		return (NULL);
-	split = malloc((count_words(s, c) + 1) * sizeof(char *));
-	if (!split)
-		return (NULL);
-	params[0] = 0;
-	params[1] = 0;
-	params[2] = -1;
-	while (s[params[0]])
-	{
-		split = process_split(s, c, split, params);
-		if (!split)
-			return (NULL);
-		params[0]++;
-	}
-	split[params[1]] = NULL;
-	return (split);
+	return (str_array);
 }
