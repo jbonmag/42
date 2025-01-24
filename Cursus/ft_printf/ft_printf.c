@@ -6,28 +6,63 @@
 /*   By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:10:13 by jubonet-          #+#    #+#             */
-/*   Updated: 2025/01/23 12:39:55 by jubonet-         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:10:30 by jubonet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdarg.h>
+//#include <stdio.h>
+//#include <stdarg.h>
+#include "ft_print.h"
+
+static int	input_esperado(const char *format, unsigned int *i, va_list *args)
+{
+	unsigned int	counter;
+
+	counter = 0;
+	if (format[*i] == 'c')
+		counter += printf_char(va_arg(*args, int));
+	else if (format[*i] == 's')
+		counter += printf_string(va_arg(*args, char *));
+	else if (format[*i] == 'p')
+		counter += printf_ptr(va_arg(*args, void *));
+	else if (format[*i] == 'd' || input[*i] == 'i')
+		counter += printf_nbr(va_arg(*args, int));
+	else if (format[*i] == 'x')
+		counter += printf_hex(va_arg(*args, int), 1);
+	else if (format[*i] == 'X')
+		counter += printf_hex(va_arg(*args, int), 0);
+	else if (format[*i] == 'u')
+		counter += printf_uint(va_arg(*args, int));
+	else if (format[*i] == '%')
+	{
+		printf_char('%');
+		return (1);
+	}
+	return (counter);
+}
 
 int	printf(const char *format, ...)
 {
-	//Primero implementar función que cuente núm. de char para que nos devuelva el total al final
-	//A continuación la lista de excepciones (cspdiuxX%) 
+	va_list			args;
+	unsigned int	i;
+	usigned int		return_length;
 
-	va_list	amorenauer
+	i = 0;
+	return_length = 0;
+	va_start(args, input);
+	while (input[i])
 	{
-		//c --> putstr
-		//s --> putstr
-		//p --> este parece chunguer, mirar que me puede sacar un HEX
-		//d --> isalnum?
-		//i --> joder con las funciones, toca repasar (isalnum?)
-		//u --> ahí va una de enteros unsigned
-		//x --> Hex en minusculas (unsigned int)
-		//X --> Hex en mayúsculas (unsigned int)
-		//% --> Recuerda que función pilla carácteres rarunos (ASCII 37)
-		// Con esto y un bizcocho ya lo tendriamos todo hasta mañana a las 8 (o 9).
-
+		if (input[i] == '%')
+		{
+			i++;
+			return_length += input_esperado(input, &i, &ar, gs);
+		}
+		else
+		{
+			return_lenght += printf_char(input[i]);
+		}
+		i++;
+	}
+	va_ends(args);
+	return (return_length);
+}
