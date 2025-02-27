@@ -1,0 +1,42 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile.dev                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jubonet- <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/02/11 23:32:57 by jubonet-          #+#    #+#              #
+#    Updated: 2025/02/12 00:00:18 by jubonet-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+MAIN = main.c
+NAME = libftprintf.a
+EXEC = test
+
+# Regla principal
+all: $(NAME) $(EXEC)
+
+# Generar la biblioteca estática
+$(NAME):
+	make -f Makefile
+
+# Crear el archivo ejecutable
+$(EXEC): $(MAIN) $(NAME)
+	$(CC) $(CFLAGS) $(MAIN) -L. -lftprintf -o $(EXEC)
+
+# Limpiar el ejecutable
+clean:
+	rm -f $(EXEC)
+
+# Limpiar todos los archivos generados
+fclean: clean
+	rm -f $(NAME)
+
+# Regenerar todo
+re: fclean all
+
+.PHONY: all clean fclean re
+
