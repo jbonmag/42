@@ -79,14 +79,14 @@ char	*read_file(int fd, char *res)
 		{
 			free(buffer);
 			free(res);
-			res = NULL;
+			/* Se limpia el acumulado en caso de error */
 			return (NULL);
 		}
-		buffer[byte_read] = 0;
+		buffer[byte_read] = '\0';
 		res = ft_free(res, buffer);
-		// Importante: buscar \n en 'res', NO en 'buffer'
+		/* Buscar '\n' en el acumulado (res) en lugar de en buffer */
 		if (ft_strchr(res, '\n'))
-			break;
+			break ;
 	}
 	free(buffer);
 	return (res);
@@ -94,16 +94,18 @@ char	*read_file(int fd, char *res)
 
 char	*get_next_line(int fd)
 {
-	// 1) Array estático para cada FD
 	static char	*buffer[OPEN_MAX];
 	char		*line;
 
-	// 2) Chequear fd >= 0 && fd < OPEN_MAX, etc.
 	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	buffer[fd] = read_file(fd, buffer[fd]);
 	if (!buffer[fd])
+	{
+		/* Aseguramos que el slot se limpia */
+		buffer[fd] = NULL;
 		return (NULL);
+	}
 	line = ft_line(buffer[fd]);
 	buffer[fd] = ft_next(buffer[fd]);
 	return (line);

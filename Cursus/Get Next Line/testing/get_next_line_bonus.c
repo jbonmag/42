@@ -89,18 +89,22 @@ char    *read_file(int fd, char *res)
     return (res);
 }
 
-char    *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-    static char *buffer[OPEN_MAX];
-    char        *line;
+	static char	*buffer[OPEN_MAX];
+	char		*line;
 
-    if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-        return (NULL);
-    buffer[fd] = read_file(fd, buffer[fd]);
-    if (!buffer[fd])
-        return (NULL);
-    line = ft_line(buffer[fd]);
-    buffer[fd] = ft_next(buffer[fd]);
-    return (line);
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+		return (NULL);
+	buffer[fd] = read_file(fd, buffer[fd]);
+	if (!buffer[fd])
+	{
+		/* Aseguramos que el slot se limpia */
+		buffer[fd] = NULL;
+		return (NULL);
+	}
+	line = ft_line(buffer[fd]);
+	buffer[fd] = ft_next(buffer[fd]);
+	return (line);
 }
 
