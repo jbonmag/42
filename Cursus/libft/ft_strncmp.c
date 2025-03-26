@@ -31,10 +31,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 }
 
-/*int	main()
-{
-	char	str[] = "Un gran arbol";
-	char	str1[] = "Un gran pescado";
-	ft_putnbr_fd(ft_strncmp(str, str1, 5), 1);
-	ft_putchar_fd('\n', 1);
-}*/
