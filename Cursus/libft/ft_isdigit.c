@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*checks for a digit (0 through 9).*/
 #include "libft.h"
 
 int	ft_isdigit(int c)
@@ -20,28 +19,3 @@ int	ft_isdigit(int c)
 	else
 		return (0);
 }
-
-/*int     main(void)
-{
-    int    c;
-    int    result;
-
-
-    c = '0';
-    result = ft_isdigit(c);
-    printf("Comete un %d\n", result);
-
-    c = '7';
-    result = ft_isdigit(c);
-    printf("Comete un %d\n", result);
-
-    c = 'g';
-    result = ft_isdigit(c);
-    printf("Comete un %d\n", result);
-
-    c = '*';
-    result = ft_isdigit(c);
-    printf("Comete un %d\n", result);
-
-    return (0);
-}*/
