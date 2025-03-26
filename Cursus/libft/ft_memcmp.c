@@ -30,10 +30,3 @@ int	ft_memcmp(void *dest, const void *src, size_t n)
 	else
 		return (0);
 }
-
-/*int main()
-{
-	char	str[] = "Hola i adeu";
-	char	str1[] = "Bon dia i bona nit";
-	ft_putnbr_fd(ft_memcmp(str, str1, 5), 1);
-}*/
