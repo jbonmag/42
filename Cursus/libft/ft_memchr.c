@@ -28,11 +28,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	else
 		return (NULL);
 }
-
-/*int	main()
-{
-	char str[] = "Cuando encuentres . tu sigue";
-	char c = 'e';
-	ft_putstr_fd(ft_memchr(str, c, ft_strlen(str)), 1);
-	ft_putchar_fd('\n', 1);
-}*/
