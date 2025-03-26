@@ -65,19 +65,3 @@ char	*ft_itoa(int n)
 	res[size] = '\0';
 	return (res);
 }
-
-/*int main()
-{
-	int	i = 125;
-	int	j = -814;
-	int	min = -2147483648;
-	int	max = 2147483647;
-	ft_putstr_fd(ft_itoa(i), 1);
-	ft_putchar_fd('\n', 1);
-	ft_putstr_fd(ft_itoa(j), 1);
-	ft_putchar_fd('\n', 1);
-	ft_putstr_fd(ft_itoa(min), 1);
-	ft_putchar_fd('\n', 1);
-	ft_putstr_fd(ft_itoa(max), 1);
-	ft_putchar_fd('\n', 1);
-}*/
