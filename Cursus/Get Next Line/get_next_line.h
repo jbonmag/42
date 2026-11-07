@@ -20,17 +20,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-/*
-** Prototipo principal
-*/
 char	*get_next_line(int fd);
 
 /*
-** Funciones auxiliares (definidas en get_next_line_utils.c)
+** Funciones auxiliares, definidas en get_next_line_utils.c.
+** ft_strjoin libera 's1'.
 */
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char const *s2);
 
 #endif
-
