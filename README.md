@@ -4,6 +4,7 @@ My exercises and projects at [42 Barcelona](https://www.42barcelona.com/): the f
 
 | project | what it is | state |
 |---|---|---|
+| **[push_swap](https://github.com/jbonmag/push_swap-annealing)** | sort numbers with two stacks and few operations, solved with simulated annealing ([own repository](https://github.com/jbonmag/push_swap-annealing)) | 400 / 3,275 operations on average for 100 / 500 numbers; 42's limit is 700 / 5,500 |
 | [libft](Cursus/libft) | my own C library: 43 functions from libc and beyond, plus linked lists (bonus) | Norm OK, `make` and `make bonus` build |
 | [ft_printf](Cursus/ft_printf) | a `printf` for `%c %s %p %d %i %u %x %X %%`, built on libft | Norm OK; output and return value match `printf` on the cases below |
 | [Get Next Line](Cursus/Get%20Next%20Line) | read a file descriptor one line at a time; bonus: several descriptors at once | Norm OK; no leaks under valgrind |
@@ -12,6 +13,15 @@ My exercises and projects at [42 Barcelona](https://www.42barcelona.com/): the f
 | [Discovery](Discovery) | the cybersecurity Discovery piscine: shell, OSINT and capture-the-flag challenges | as submitted |
 
 ## Common core
+
+### push_swap
+
+My most complete project so far, kept in its own repository, [push_swap-annealing](https://github.com/jbonmag/push_swap-annealing). Instead of a fixed sorting recipe, it searches for a short sequence of operations with simulated annealing:
+- **About 1 s per run:** 400 operations on average for 100 numbers and 3,275 for 500.
+- **About 20 s per run:** 382 and 3,119.
+- **42's limit for full marks:** 700 and 5,500.
+
+The repository includes a full write-up in English and Spanish and the lab notebook of every experiment.
 
 ### libft
 
