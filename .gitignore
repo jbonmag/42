@@ -1,0 +1,10 @@
+# Build outputs
+*.o
+*.a
+a.out
+rush-02
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,39 +1,60 @@
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <unistd.h>
 #include "ft.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-int is_number(const char *str) {
-    while (*str) {
-        if (!isdigit(*str)) {
-            return 0;
-        }
-        str++;
+char *ft_strdup(char *src)
+{
+    int i;
+    int len;
+    char *dst;
+
+    len = 0;
+    while (src[len] != '\0')
+        len++;
+    dst = (char *)malloc(len + 1);
+    if (!dst)
+        return (NULL); // Retorna NULL si malloc falla
+    i = 0;
+    while (i < len)
+    {
+        dst[i] = src[i];
+        i++;
     }
-    return 1;
+    dst[i] = '\0';
+    return (dst);
 }
 
-long long ft_atoi(const char *str) {
-    long long result = 0;
-    while (*str >= '0' && *str <= '9') {
-        result = result * 10 + (*str - '0');
-        str++;
+long long ft_atoi(const char *str)
+{
+    long long res;
+    int negative;
+
+    negative = 1;
+    res = 0;
+    while (*str && (*str == ' ' || *str == '\n' || *str == '\t' ||
+                    *str == '\v' || *str == '\f' || *str == '\r'))
+        ++str;
+    if (*str == '-')
+        negative = -1;
+    if (*str == '-' || *str == '+')
+        ++str;
+    while (*str && *str >= '0' && *str <= '9')
+    {
+        res = res * 10 + (*str - '0');  // Convertir char a int
+        ++str;
     }
-    return result;
+    return (res * negative);
 }
 
-char *ft_strdup(const char *s1) {
-    char *s2;
-    size_t len = strlen(s1) + 1;
-    s2 = malloc(len);
-    if (s2 == NULL) return NULL;
-    memcpy(s2, s1, len);
-    return s2;
-}
+void ft_putstr(char *str)
+{
+    int i;
 
-void ft_putstr(const char *str) {
-    while (*str) {
-        write(1, str++, 1);
+    i = 0;
+    while (str[i])
+    {
+        write(1, &str[i], 1);
+        i++;
     }
 }

@@ -1,43 +1,132 @@
+#include "ft.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <stdio.h>
-#include <string.h>
-#include "ft.h"
 
-#define MAX_ENTRIES 1000  // Ajusta este valor según tus necesidades
+char *ft_getnb(int fd)
+{
+    int i;
+    char c[1];
+    char *str;
 
-void free_entries(t_list *entries) {
-    // Suponiendo que entries es un array de t_list
-    // y cada elemento tiene un campo 'val' que debe ser liberado.
-    if (entries) {
-        for (int i = 0; i < MAX_ENTRIES; i++) {
-            if (entries[i].val) {
-                free(entries[i].val);
+    str = (char *)malloc(128);
+    if (!str)
+        return (NULL); // Error en la asignación de memoria
+
+    i = 0;
+    read(fd, c, 1);
+    while (c[0] == '\n')
+        read(fd, c, 1);
+    while (c[0] >= '0' && c[0] <= '9')
+    {
+        str[i++] = c[0];
+        read(fd, c, 1);
+    }
+    str[i] = '\0';
+    return (str);
+}
+
+char *ft_getval(int fd, char *c)
+{
+    int i;
+    char *str;
+
+    str = (char *)malloc(128);
+    if (!str)
+        return (NULL); // Error en la asignación de memoria
+
+    i = 0;
+    while (c[0] != '\n')
+    {
+        str[i++] = c[0];
+        if (read(fd, c, 1) <= 0) // Leer carácter por carácter
+        {
+            free(str);
+            return (NULL); // Error en la lectura
+        }
+    }
+    str[i] = '\0';
+    return (str);
+}
+
+t_list *process(char *file)
+{
+    int i;
+    int fd;
+    char c[1];
+    t_list *tab;
+    char *tmp;
+
+    fd = open(file, O_RDONLY);
+    if (fd == -1)
+        return (NULL); // Error al abrir el archivo
+
+    tab = (t_list *)malloc(sizeof(t_list) * 33);
+    if (!tab)
+    {
+        close(fd);
+        return (NULL); // Error en la asignación de memoria
+    }
+
+    i = 0;
+    while (i < 32)
+    {
+        char *nb_str = ft_getnb(fd);
+        if (!nb_str)
+        {
+            close(fd);
+            free(tab);
+            return (NULL); // Error en la asignación de memoria
+        }
+
+        tab[i].nb = ft_atoi(nb_str);
+        free(nb_str);
+
+        if (read(fd, c, 1) <= 0)
+        {
+            close(fd);
+            free(tab);
+            return (NULL); // Error de lectura
+        }
+        while (c[0] == ' ')
+            if (read(fd, c, 1) <= 0)
+            {
+                close(fd);
+                free(tab);
+                return (NULL); // Error de lectura
             }
-        }
-        free(entries);
-    }
-}
+        if (c[0] == ':')
+            if (read(fd, c, 1) <= 0)
+            {
+                close(fd);
+                free(tab);
+                return (NULL); // Error de lectura
+            }
+        while (c[0] == ' ')
+            if (read(fd, c, 1) <= 0)
+            {
+                close(fd);
+                free(tab);
+                return (NULL); // Error de lectura
+            }
 
-char *getdec(long long nb, t_list *entries) {
-    // Implementa la conversión del número en palabras aquí
-    // Esta es una implementación ficticia.
-    // Deberás ajustar esta función según el formato de tu diccionario.
-    for (int i = 0; i < MAX_ENTRIES; i++) {
-        if (entries[i].nb == nb) {
-            return ft_strdup(entries[i].val);
+        tmp = ft_getval(fd, c);
+        if (!tmp)
+        {
+            close(fd);
+            free(tab);
+            return (NULL); // Error en la asignación de memoria
         }
+        tab[i].val = ft_strdup(tmp);
+        free(tmp);
+        if (!tab[i].val)
+        {
+            close(fd);
+            free(tab);
+            return (NULL); // Error en la asignación de memoria
+        }
+        i++;
     }
-    return NULL;
-}
-
-t_list *process(const char *filename) {
-    // Implementa la carga y procesamiento del diccionario aquí
-    // Esta es una implementación ficticia.
-    // Deberás ajustar esta función para leer el archivo y llenar el array de t_list.
-    t_list *entries = malloc(MAX_ENTRIES * sizeof(t_list));
-    if (!entries) return NULL;
-    // Lógica para leer el archivo y llenar entries
-    return entries;
+    close(fd);
+    return (tab);
 }

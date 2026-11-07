@@ -53,7 +53,7 @@ Tested with `BUFFER_SIZE` 1, 3, 42, 9999 and 10,000,000:
 
 `Piscine 42/` holds the C modules C00 to C04, the shell modules Shell00 and Shell01, and two group projects:
 - **Rush00** draws rectangles with characters.
-- **Rush02** converts numbers to English words using a dictionary file. `Rush02` and `Rush02v1` are two versions of the same project.
+- **Rush02** converts numbers to English words using a dictionary file: `./rush-02 1234` prints "one thousand two hundred thirty four", up to 4,294,967,295.
 
 The `.tar` files in the shell exercises are part of what those exercises ask to submit.
 
