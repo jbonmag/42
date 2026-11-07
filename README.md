@@ -1,6 +1,6 @@
 # 42
 
-My exercises and projects at [42 Barcelona](https://www.42barcelona.com/), in C and shell, from the Discovery piscine to the first projects of the common core. Login: `jubonet-`.
+My exercises and projects at [42 Barcelona](https://www.42barcelona.com/): the first projects of the common core, the C piscine and, before it, the cybersecurity Discovery piscine. Login: `jubonet-`.
 
 | project | what it is | state |
 |---|---|---|
@@ -9,7 +9,7 @@ My exercises and projects at [42 Barcelona](https://www.42barcelona.com/), in C 
 | [Get Next Line](Cursus/Get%20Next%20Line) | read a file descriptor one line at a time; bonus: several descriptors at once | Norm OK; no leaks under valgrind |
 | [Piscine Reloaded](Cursus/Piscine%20Reloaded) | refresher of the piscine before the common core | exercises ex00-ex27 |
 | [Piscine 42](Piscine%2042) | the four-week C piscine: Shell00-01, C00-C04, Rush00, Rush02 | as submitted |
-| [Discovery](Discovery) | the Discovery piscine: shell basics and small challenges | as submitted |
+| [Discovery](Discovery) | the cybersecurity Discovery piscine: shell, OSINT and capture-the-flag challenges | as submitted |
 
 ## Common core
 
@@ -60,3 +60,13 @@ The `.tar` files in the shell exercises are part of what those exercises ask to 
 ## Norm
 
 All C code in the common core follows the [42 Norm](https://github.com/42School/norminette) and is checked with `norminette`. The exceptions are the test programs (`main.c`), which are not part of what is submitted.
+
+## Discovery: cybersecurity piscine
+
+An introductory piscine on cybersecurity:
+
+- **Shell00 and Shell01**: a first Bash script that checks its argument and prints a message the requested number of times.
+- **tyto**: OSINT exercises, where open sources such as social networks and photos lead to the answer: an account, a place, a phone model.
+- **weasel**: capture-the-flag challenges, each solved by finding a flag of the form `42BCN{...}`.
+
+Each `flag.txt` holds the answer that was submitted.
