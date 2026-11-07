@@ -1,0 +1,3 @@
+[submodule "Cursus/push_swap"]
+	path = Cursus/push_swap
+	url = https://github.com/jbonmag/push_swap-annealing.git
